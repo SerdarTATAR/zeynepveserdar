@@ -77,8 +77,10 @@ h2{font-family:var(--serif);font-weight:600;font-size:clamp(34px,7vw,52px);color
 .polaroidler{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:22px 16px}
 .polaroid{background:#fff;padding:10px 10px 14px;border-radius:4px;box-shadow:var(--golge);transform:rotate(var(--r));transition:transform .35s cubic-bezier(.3,1.4,.5,1);cursor:pointer;border:0;text-align:center}
 .polaroid:hover,.polaroid:focus-visible{transform:rotate(0) scale(1.06);z-index:2;position:relative}
-.foto{aspect-ratio:1;border-radius:2px;background:linear-gradient(135deg,#f6d5cc,#e9b9b6);display:grid;place-items:center;color:#fff;font-size:34px;overflow:hidden}
-.foto img{width:100%;height:100%;object-fit:cover}
+.foto{aspect-ratio:4/5;border-radius:2px;background:linear-gradient(135deg,#f6d5cc,#e9b9b6);display:grid;place-items:center;color:#fff;font-size:34px;overflow:hidden}
+.foto img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.buyuk-ekran .foto{aspect-ratio:auto;background:#000}
+.buyuk-ekran .foto img{height:auto;max-height:68vh;object-fit:contain}
 .foto small{display:block;font-size:11px;margin-top:4px;font-family:var(--sans)}
 .polaroid p{font-family:var(--el);font-size:21px;margin:10px 0 0;color:var(--murdum);line-height:1.1}
 .buyuk-ekran{position:fixed;inset:0;z-index:40;background:rgba(61,42,48,.75);display:grid;place-items:center;padding:20px;opacity:0;visibility:hidden;transition:.35s}
@@ -180,7 +182,7 @@ footer{text-align:center;padding:40px 20px 60px;font-family:var(--el);font-size:
     <button class="tut" id="tut" aria-label="Mektubu açmak için basılı tut">💌<svg viewBox="0 0 162 162"><circle cx="81" cy="81" r="78" id="tutHalka"/></svg></button>
     <div class="mektup-kagit" id="mektup" aria-live="polite">
       <p>Sevgili Zeynep’im,</p>
-      <p>Bu küçük siteyi sana bir şey söylemek için yaptım: hayatıma girdiğin günden beri her şey biraz daha renkli, biraz daha anlamlı. Gülüşün en kötü günümü bile güzelleştirmeye yetiyor.</p>
+      <p>Bu küçük siteyi sana bir şey söylemek için yaptım: hayatım seninle hiç olmadığı kadar güzel. Hayatıma girdiğin günden beri her şey biraz daha renkli, biraz daha anlamlı. Gülüşün en kötü günümü bile güzelleştirmeye yetiyor.</p>
       <p>İyi ki varsın, iyi ki benimlesin. Birlikte biriktireceğimiz daha nice anı, daha nice fotoğraf var.</p>
       <p class="imza">Seni çok seven,<br>Serdar</p>
     </div>
@@ -199,17 +201,20 @@ footer{text-align:center;padding:40px 20px 60px;font-family:var(--el);font-size:
 /* ====== Kolayca değiştirilecek bilgiler ====== */
 const BASLANGIC = '2026-08-01T00:00:00';   // tanıştığınız / birlikte olduğunuz tarih
 const NEDENLER = [
-  'Gülüşün dünyamı aydınlatıyor', 'Yanında hep kendim olabiliyorum', 'En sıradan günü bile özel yapıyorsun',
+  'Hayatım seninle hiç olmadığı kadar güzel', 'Gülüşün dünyamı aydınlatıyor', 'Yanında hep kendim olabiliyorum', 'En sıradan günü bile özel yapıyorsun',
   'Bana sarıldığında her şey yerine oturuyor', 'Kahkahanı duymak için her şeyi yaparım', 'Bana her gün daha iyi biri olmak için ilham veriyorsun',
   'Gözlerine bakınca zaman duruyor', 'Kötü günümde ilk aklıma gelen sensin', 'Seninle sessizlik bile güzel',
   'Hayallerimizi birlikte kurmayı seviyorum', 'Kalbinin güzelliği', 'Çünkü sen sensin'];
-const ANILAR = [   // foto: 'foto/1.jpg' gibi; boş bırakılırsa çerçeve görünür
-  {baslik:'İlk tanıştığımız gün', aciklama:'Her şeyin başladığı an', foto:''},
-  {baslik:'İlk randevumuz', aciklama:'Heyecandan ne konuştuğumu hatırlamıyorum', foto:''},
-  {baslik:'En sevdiğimiz yer', aciklama:'Bizim yerimiz', foto:''},
-  {baslik:'O güzel tatil', aciklama:'Hiç bitmesin istediğimiz günler', foto:''},
-  {baslik:'Gülmekten öldüğümüz an', aciklama:'Hâlâ aklıma gelince gülüyorum', foto:''},
-  {baslik:'Biz', aciklama:'En sevdiğim fotoğrafımız', foto:''},
+const ANILAR = [
+  {baslik:'Ayna ayna, söyle bana', aciklama:'Dünyanın en güzel ikilisi kim? Cevap belli 😌', foto:'foto/4.jpg'},
+  {baslik:'Gülümse, çekiyorum', aciklama:'Sen gülünce kare kendiliğinden güzelleşiyor', foto:'foto/1.jpg'},
+  {baslik:'Yolculukların en güzeli', aciklama:'Nereye gittiğimiz değil, seninle gitmek önemli', foto:'foto/3.jpg'},
+  {baslik:'Çiçekler sana yakışıyor', aciklama:'Ama hiçbiri senin kadar güzel değil', foto:'foto/2.jpg'},
+  {baslik:'Gece yarısı ikimiz', aciklama:'Şehrin ışıkları bile sana bakıyordu', foto:'foto/7.jpg'},
+  {baslik:'Öpücük molası', aciklama:'Günün en sevdiğim anı', foto:'foto/6.jpg'},
+  {baslik:'Hep yanımda', aciklama:'Her yolda yanımdaki sen ol', foto:'foto/8.jpg'},
+  {baslik:'Sağ koltuk prensesi', aciklama:'O koltuk ilk günden beri senin 👑', foto:'foto/9.jpg'},
+  {baslik:'Bir zamanlar minik bir prenses', aciklama:'O gülüş hiç değişmemiş', foto:'foto/5.jpg'},
 ];
 const DILLER = ['Seni seviyorum', 'I love you', 'Je t’aime', 'Ti amo', 'Te quiero', 'Ich liebe dich', 'Eu te amo', 'Σ’ αγαπώ', '愛してる', 'Seni seviyorum ❤️'];
 
@@ -246,7 +251,7 @@ $('#zarf').onclick = e => {
 };
 
 /* ---- Yazı makinesi ---- */
-const CUMLELER = ['Bu site sadece senin için.', 'Her satırında biraz ben, çokça sen var.', 'Hazırsan, aşağı kaydır…'];
+const CUMLELER = ['Hayatım seninle hiç olmadığı kadar güzel.', 'Bu site sadece senin için.', 'Her satırında biraz ben, çokça sen var.', 'Hazırsan, aşağı kaydır…'];
 function yaziBaslat() {
   let c = 0, h = 0, sil = false;
   const el = $('#yazi');
@@ -273,7 +278,7 @@ function sayac() {
 sayac(); setInterval(sayac, 1000);
 
 /* ---- Nedenler ---- */
-let sira = [...NEDENLER.keys()].sort(() => Math.random() - .5), n = -1;
+let sira = [0, ...[...NEDENLER.keys()].slice(1).sort(() => Math.random() - .5)], n = -1;
 function yeniNeden() { n = (n + 1) % sira.length; $('#neden').textContent = NEDENLER[sira[n]]; $('#kartNo').textContent = '#' + (n + 1); }
 yeniNeden();
 $('#kart').onclick = e => { $('#kart').classList.toggle('donmus'); if ($('#kart').classList.contains('donmus')) kalpler(e.clientX, e.clientY, 8); };
